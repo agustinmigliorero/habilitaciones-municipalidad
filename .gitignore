@@ -1,0 +1,15 @@
+node_modules
+servidor/node_modules
+servidor/*.env
+cliente/node_modules
+cliente/logs
+cliente/*.log
+cliente/npm-debug.log*
+cliente/yarn-debug.log*
+cliente/yarn-error.log*
+cliente/pnpm-debug.log*
+cliente/lerna-debug.log*
+cliente/node_modules
+cliente/dist
+cliente/dist-ssr
+cliente/*.local
