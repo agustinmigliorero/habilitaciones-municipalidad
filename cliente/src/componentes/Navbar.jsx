@@ -1,38 +1,56 @@
 import "./Navbar.css";
+import { Link, NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
   const linksConectado = () => {
-    return (
-      <>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Cuenta
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Cerrar Sesion
-          </a>
-        </li>
-      </>
-    );
+    if (usuarioLogeado.logeado) {
+      return (
+        <>
+          <li className="nav-item">
+            <NavLink className="nav-link" to={"/"}>
+              Hola! {usuarioLogeado.usuario.user}
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              onClick={cerrarSesion}
+              className="nav-link"
+              to={"/desconectarse"}
+            >
+              Cerrar Sesion
+            </NavLink>
+          </li>
+        </>
+      );
+    }
   };
 
   const linksDesconectado = () => {
-    return (
-      <>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Iniciar Sesion
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Registrarse
-          </a>
-        </li>
-      </>
-    );
+    if (!usuarioLogeado.logeado) {
+      return (
+        <>
+          <li className="nav-item">
+            <NavLink className="nav-link" to={"/iniciar-sesion"}>
+              Iniciar Sesion
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to={"/registrarse"}>
+              Registrarse
+            </NavLink>
+          </li>
+        </>
+      );
+    }
+  };
+
+  const cerrarSesion = () => {
+    fetch("http://localhost:3000/auth/cerrar-sesion", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setUsuarioLogeado(data))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -56,18 +74,22 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <NavLink className="nav-link " aria-current="page" to={"/"}>
                   Inicio
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to={"/preguntas-frecuentes"}
+                >
                   Preguntas frecuentes
-                </a>
+                </NavLink>
               </li>
             </ul>
             <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
-              {/* {linksConectado()} */}
+              {linksConectado()}
               {linksDesconectado()}
             </ul>
           </div>
