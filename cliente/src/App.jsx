@@ -19,7 +19,7 @@ function App() {
         setUsuarioLogeado={setUsuarioLogeado}
       />
       <Routes>
-        <Route path="/" element={<Inicio />} />
+        <Route path="/" element={<Inicio usuarioLogeado={usuarioLogeado} />} />
         <Route path="/iniciar-sesion" element={<IniciarSesion />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

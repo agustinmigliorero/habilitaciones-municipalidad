@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+require("https").globalAgent.options.rejectUnauthorized = false;
 const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -19,13 +20,6 @@ mongoose
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
-
-// app.use(
-//   cors({
-//     origin: process.env.CLIENT_URL,
-//     credentials: true,
-//   })
-// );
 
 //cors
 app.use((req, res, next) => {

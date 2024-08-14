@@ -40,7 +40,7 @@ boton.addEventListener("click", (evt) => {
 
   div.innerHTML = textoPDF;
 
-  div.style.width = "680px";
+  div.style.width = "640px";
   div.style.margin = "0 auto";
   div.style.textAlign = "justify";
 

@@ -3,12 +3,12 @@ import GoogleLogo from "../../assets/google-logo.jpg";
 
 function IniciarSesion() {
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h1>Iniciar Sesion con Google</h1>
       {/* <button className="btn-google">
         <img src={GoogleLogo} alt="Google Logo" /> Iniciar Sesion
       </button> */}
-      <div className="row">
+      <div className="row justify-content-center">
         <div className="col-md-3">
           <a
             className="btn btn-outline-dark"
