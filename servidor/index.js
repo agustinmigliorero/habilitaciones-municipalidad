@@ -67,7 +67,10 @@ passport.use(
         return done(null, usuario);
       } else {
         const nuevoUsuario = new Usuario({
-          user: profile.displayName,
+          nombre: profile.name.givenName,
+          apellido: profile.name.familyName,
+          email: profile.emails[0].value,
+          imagen: profile.photos[0].value,
           googleId: profile.id,
         });
         await nuevoUsuario.save();

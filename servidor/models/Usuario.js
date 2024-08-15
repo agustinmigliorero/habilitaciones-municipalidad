@@ -1,24 +1,27 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
-const passport = require("passport");
-const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
+// const passport = require("passport");
+// const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 
 const usuarioSchema = new Schema({
-  user: {
+  nombre: {
     type: String,
     required: true,
+  },
+  apellido: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  imagen: {
+    type: String,
   },
   googleId: {
     type: String,
   },
 });
-
-usuarioSchema.methods.serialize = function () {
-  return {
-    id: this.id,
-    user: this.user,
-    googleId: this.googleId,
-  };
-};
 
 module.exports = mongoose.model("Usuario", usuarioSchema);

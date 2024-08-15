@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const Usuario = require("../models/Usuario");
 require("dotenv").config();
 
 router.get(

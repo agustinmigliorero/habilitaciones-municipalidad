@@ -4,7 +4,10 @@ function Inicio({ usuarioLogeado }) {
     <div style={{ textAlign: "center" }}>
       {usuarioLogeado.logeado && (
         <div className="alert alert-success w-75 m-auto mt-3" role="alert">
-          Bienvenido! <b>{usuarioLogeado.usuario.user}</b>
+          Bienvenido!{" "}
+          <b>
+            {usuarioLogeado.usuario.nombre}, {usuarioLogeado.usuario.apellido}
+          </b>
         </div>
       )}
       <h1>Inicio</h1>
