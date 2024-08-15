@@ -92,8 +92,8 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-const authRouter = require("./routes/authRouter.js");
-app.use("/auth", authRouter);
+const usuariosRouter = require("./routes/usuarios.js");
+app.use("/api/usuarios", usuariosRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

@@ -4,7 +4,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Inicio from "./paginas/Inicio";
-import Login from "./paginas/usuario/Login";
+
 import Navbar from "./componentes/Navbar";
 import IniciarSesion from "./paginas/usuario/IniciarSesion";
 import { useAuth } from "./UseAuth";

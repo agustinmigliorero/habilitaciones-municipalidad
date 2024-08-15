@@ -22,6 +22,23 @@ const usuarioSchema = new Schema({
   googleId: {
     type: String,
   },
+  rol: {
+    type: String,
+    default: "contribuyente", //Estados: "contribuyente", "habilitaciones", "catastro", "planeamiento", "administrador"
+  },
+  verificado: {
+    type: Boolean,
+    default: false,
+  },
+  dni: {
+    type: String,
+  },
+  expedientes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Expediente",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Usuario", usuarioSchema);

@@ -12,7 +12,7 @@ function IniciarSesion() {
         <div className="col-md-3">
           <a
             className="btn btn-outline-dark"
-            href="http://localhost:3000/auth/google"
+            href="http://localhost:3000/api/usuarios/google"
             role="button"
             style={{ textTransform: "none" }}
           >
