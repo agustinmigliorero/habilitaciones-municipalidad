@@ -92,8 +92,16 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+//Rutas
 const usuariosRouter = require("./routes/usuarios.js");
 app.use("/api/usuarios", usuariosRouter);
+
+const expedientesRouter = require("./routes/expedientes.js");
+app.use("/api/expedientes", expedientesRouter);
+
+const formulariosRouter = require("./routes/formularios.js");
+app.use("/api/formularios", formulariosRouter);
+//Rutas
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

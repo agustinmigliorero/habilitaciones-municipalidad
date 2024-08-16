@@ -1,0 +1,53 @@
+{
+  "nombreFormulario": "F3: Solicitud de habilitación",
+  "campos": [
+    {
+      "tipo": "text",
+      "etiqueta": "Nombre y apellido",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "DNI",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "CUIT",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Domicilio personal",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Ciudad de residencia",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Domicilio del comercio",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Ciudad del comercio",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "checkbox",
+      "etiqueta": "Terminos y Condiciones",
+      "requerido": true,
+      "valor": false
+    }
+  ]
+}

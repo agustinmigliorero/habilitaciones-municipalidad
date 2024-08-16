@@ -8,7 +8,7 @@ const verUsuarios = async (req, res) => {
 
 const verUsuario = async (req, res) => {
   const { id } = req.params;
-  const usuario = await Usuario.findById(id);
+  const usuario = await Usuario.findById(id).populate("expedientes");
   res.json({ usuario });
 };
 
