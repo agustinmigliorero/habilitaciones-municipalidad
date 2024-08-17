@@ -92,6 +92,11 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+//Generar formularios
+const { generarFormularios } = require("./utils.js");
+generarFormularios();
+//Generar formularios
+
 //Rutas
 const usuariosRouter = require("./routes/usuarios.js");
 app.use("/api/usuarios", usuariosRouter);
@@ -112,5 +117,6 @@ app.get("/chequearlogin", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Servidor iniciado en el puerto ${port}`);
+  console.log(`http://localhost:${port}`);
 });

@@ -15,8 +15,11 @@ const verExpediente = async (req, res) => {
 
 const crearExpediente = async (req, res) => {
   const { formularios } = req.body;
-  //   const usuario = await Usuario.findById(req.user._id);
-  const usuario = await Usuario.findById("66bdbd6dd4625296d2fb4c88");
+  const usuario = await Usuario.findById(req.user._id);
+  // const usuario = await Usuario.findById("66bdbd6dd4625296d2fb4c88");
+  const nuevaRespuestaFormulario = new RespuestaFormulario({
+    formularios: formularios,
+  });
   const nuevoExpediente = new Expediente({
     formularios: formularios.push(formularios),
     usuario: usuario._id,
@@ -27,33 +30,66 @@ const crearExpediente = async (req, res) => {
   res.json({ nuevoExpediente });
 };
 
-// const editarExpediente = async (req, res) => {
-//   const { id } = req.params;
-//   let expediente;
-//   if (
-//     (req.user && req.user.rol === "administrador") ||
-//     req.user.rol === "habilitaciones"
-//   ) {
-//     const { formularios, estado } = req.body;
-//     expediente = await Expediente.findByIdAndUpdate(id, {
-//       formularios,
-//       estado,
-//     });
-//   } else {
-//     const { formularios } = req.body;
-//     expediente = await Expediente.findByIdAndUpdate(id, {
-//       formularios,
-//     });
-//   }
-//   res.json({ expediente });
-// };
-
 const agregarFormulario = async (req, res) => {
-  const { id } = req.params;
+  const { idExpediente } = req.params;
   const { formulario } = req.body;
 
-  const expediente = await Expediente.findByIdAndUpdate(id, {
+  const expediente = await Expediente.findByIdAndUpdate(idExpediente, {
     $push: { formularios: formulario },
+  });
+  res.json({ expediente, mensaje: "Formulario agregado" });
+};
+
+const verFormulario = async (req, res) => {
+  const { idExpediente, idFormulario } = req.params;
+  const formulario = await Formulario.findById(idFormulario);
+  const expediente = await Expediente.findById(idExpediente).populate(
+    "formularios"
+  );
+
+  const respuestasFormulario = expediente.formularios.filter(
+    (form) => form.idFormulario === idFormulario
+  );
+
+  if (respuestasFormulario.length === 0) {
+    res.json({
+      expediente,
+      mensaje: "Este formulario no esta registrado",
+      formulario,
+    });
+  }
+
+  res.json({ formulario, expediente, respuestasFormulario });
+};
+
+const editarFormulario = async (req, res) => {
+  const { idExpediente, idFormulario } = req.params;
+  const { formulario } = req.body;
+  const expediente = await Expediente.findById(idExpediente).populate(
+    "formularios"
+  );
+  const formularioAEditar = expediente.formularios.filter(
+    (form) => form.idFormulario === idFormulario
+  );
+
+  if (formularioAEditar.length === 0) {
+    res.json({
+      expediente,
+      mensaje: "Este formulario no esta registrado",
+      formulario,
+    });
+  }
+
+  formularioAEditar[0].campos = formulario;
+  await expediente.save();
+  res.json({ expediente, formularioAEditar });
+};
+
+const cambiarEstado = async (req, res) => {
+  const { id } = req.params;
+  const { estado } = req.body;
+  const expediente = await Expediente.findByIdAndUpdate(id, {
+    estado,
   });
   res.json({ expediente });
 };
@@ -62,5 +98,9 @@ module.exports = {
   verExpedientes,
   verExpediente,
   crearExpediente,
-  //   editarExpediente,
+
+  agregarFormulario,
+  cambiarEstado,
+  verFormulario,
+  editarFormulario,
 };

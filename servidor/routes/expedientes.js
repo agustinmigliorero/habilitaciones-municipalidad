@@ -4,12 +4,18 @@ const {
   verExpedientes,
   verExpediente,
   crearExpediente,
-  editarExpediente,
+  verFormulario,
+  agregarFormulario,
+  cambiarEstado,
+  editarFormulario,
 } = require("../controllers/expedientes");
 
 router.get("/", catchAsync(verExpedientes));
-router.get("/:id", catchAsync(verExpediente));
+router.get("/:idExpediente", catchAsync(verExpediente));
 router.post("/", catchAsync(crearExpediente));
-router.put("/:id", catchAsync(editarExpediente));
+router.put("/:idExpediente", catchAsync(cambiarEstado));
+router.get("/:idExpediente/:idFormulario", catchAsync(verFormulario));
+router.post("/:idExpediente/:idFormulario", catchAsync(agregarFormulario));
+router.put("/:idExpediente/:idFormulario", catchAsync(editarFormulario));
 
 module.exports = router;

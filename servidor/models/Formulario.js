@@ -10,7 +10,7 @@ const campoSchema = new Schema({
 });
 
 const formularioSchema = new Schema({
-  nombre: { type: String, required: true },
+  nombreFormulario: { type: String, required: true },
   campos: [campoSchema],
   //   expediente: { type: Schema.Types.ObjectId, ref: "Expediente" },
   //   estado: { type: String, default: "pendiente" }, //Estados: "pendiente", "aprobado", "rechazado", "revision"
