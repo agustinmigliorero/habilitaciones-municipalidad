@@ -25,6 +25,24 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
     }
   };
 
+  const linksAdmin = () => {
+    if (
+      usuarioLogeado.logeado &&
+      (usuarioLogeado.usuario.rol === "habilitaciones" ||
+        usuarioLogeado.usuario.rol === "administrador")
+    ) {
+      return (
+        <>
+          <li className="nav-item">
+            <NavLink className="nav-link" to={"/ver-usuarios"}>
+              Usuarios
+            </NavLink>
+          </li>
+        </>
+      );
+    }
+  };
+
   const linksDesconectado = () => {
     if (!usuarioLogeado.logeado) {
       return (
@@ -87,6 +105,7 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
                   Preguntas frecuentes
                 </NavLink>
               </li>
+              {linksAdmin()}
             </ul>
             <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
               {linksConectado()}

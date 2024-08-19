@@ -25,6 +25,13 @@ const usuarioSchema = new Schema({
   rol: {
     type: String,
     default: "contribuyente", //Estados: "contribuyente", "habilitaciones", "catastro", "planeamiento", "administrador"
+    enum: [
+      "contribuyente",
+      "habilitaciones",
+      "catastro",
+      "planeamiento",
+      "administrador",
+    ],
   },
   verificado: {
     type: Boolean,

@@ -16,7 +16,6 @@ const verExpediente = async (req, res) => {
 const crearExpediente = async (req, res) => {
   const { formularios } = req.body;
   const usuario = await Usuario.findById(req.user._id);
-  // const usuario = await Usuario.findById("66bdbd6dd4625296d2fb4c88");
   const nuevaRespuestaFormulario = new RespuestaFormulario({
     formularios: formularios,
   });

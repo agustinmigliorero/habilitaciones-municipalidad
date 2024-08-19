@@ -9,7 +9,7 @@ const verUsuarios = async (req, res) => {
 const verUsuario = async (req, res) => {
   const { id } = req.params;
   const usuario = await Usuario.findById(id).populate("expedientes");
-  res.json({ usuario });
+  res.json(usuario);
 };
 
 const autenticarUsuario = async (req, res) => {
@@ -45,6 +45,7 @@ const verUsuarioLogeado = async (req, res) => {
 const editarUsuario = async (req, res) => {
   const { id } = req.params;
   let usuario;
+  console.log(`EL USUARIO QUE ESTA EDITANDO ES: ${req.user}`);
   if (
     req.user &&
     (req.user.rol === "administrador" || req.user.rol === "habilitaciones")
@@ -66,7 +67,6 @@ const editarUsuario = async (req, res) => {
       nombre,
       apellido,
       email,
-      rol,
       imagen,
       dni,
     });
