@@ -7,8 +7,12 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
       return (
         <>
           <li className="nav-item">
-            <NavLink className="nav-link" to={"/"}>
-              Hola! {usuarioLogeado.usuario.user}
+            <NavLink
+              className="nav-link"
+              to={`/ver-usuario/${usuarioLogeado.usuario._id}`}
+            >
+              Hola! {usuarioLogeado.usuario.nombre}{" "}
+              {usuarioLogeado.usuario.apellido}
             </NavLink>
           </li>
           <li className="nav-item">

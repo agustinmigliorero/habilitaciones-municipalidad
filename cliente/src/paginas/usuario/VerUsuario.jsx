@@ -21,7 +21,7 @@ function VerUsuario() {
         <>
           <h3 className="h3 mb-3 fw-normal">
             {" "}
-            Imagen:
+            Imagen:{" "}
             <img
               style={{ width: "50px", height: "50px", borderRadius: "50%" }}
               src={usuario.imagen}
@@ -47,9 +47,9 @@ function VerUsuario() {
             DNI: <b>{usuario.dni ? usuario.dni : "Falta completar DNI"}</b>
           </h3>
 
-          <button>Ver expedientes</button>
+          <button className="btn btn-info me-3  ">Ver expedientes</button>
           <Link to={`/editar-usuario/${id}`}>
-            <button>Editar usuario</button>
+            <button className="btn btn-warning">Editar usuario</button>
           </Link>
         </>
       );
@@ -57,10 +57,12 @@ function VerUsuario() {
   };
 
   return (
-    <>
-      <h1 className="h3 mb-3 fw-normal">Ver Usuario</h1>
+    <div style={{ width: "50%", margin: "0 auto", textAlign: "justify" }}>
+      <h1 className="h1 mb-3 fw-normal text-center">
+        <b>Ver Usuario</b>
+      </h1>
       {mostrarUsuario()}
-    </>
+    </div>
   );
 }
 

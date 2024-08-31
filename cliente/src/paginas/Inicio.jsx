@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Inicio({ usuarioLogeado }) {
   const navigate = useNavigate();
@@ -23,6 +23,22 @@ function Inicio({ usuarioLogeado }) {
         </div>
       )}
       <h1>Inicio</h1>
+      {usuarioLogeado.logeado ? (
+        <Link to="/expedientes">
+          <button className="btn btn-primary">Ir a expedientes</button>
+        </Link>
+      ) : (
+        <>
+          <h3>
+            Bienvenido a el sistema de habilitaciones de la Municipalidad de
+            Azul!
+          </h3>
+          <h3>Por favor inicia sesion o crea una cuenta para continuar</h3>
+          <Link to="/iniciar-sesion">
+            <button className="btn btn-primary">Iniciar sesion</button>
+          </Link>
+        </>
+      )}
     </div>
   );
 }

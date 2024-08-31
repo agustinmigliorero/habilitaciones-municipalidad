@@ -1,0 +1,23 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.contenedor-tabla {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 3%;
+}

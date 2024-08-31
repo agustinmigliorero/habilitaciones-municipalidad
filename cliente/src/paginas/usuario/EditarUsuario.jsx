@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function EditarUsuario({ usuarioLogeado }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [usuario, setUsuario] = useState({
     nombre: "",
     apellido: "",
@@ -29,7 +30,7 @@ function EditarUsuario({ usuarioLogeado }) {
       body: JSON.stringify(usuario),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => navigate(`/ver-usuario/${id}`));
   };
 
   const fetchVerUsuario = async () => {
@@ -49,7 +50,7 @@ function EditarUsuario({ usuarioLogeado }) {
     ) {
       return (
         <>
-          <div className="form-floating">
+          <div className="form-floating mb-3">
             <select
               name="rol"
               id="selectRol"
@@ -64,7 +65,7 @@ function EditarUsuario({ usuarioLogeado }) {
 
             <label htmlFor="selectRol">Rol</label>
           </div>
-          <div className="form-floating">
+          <div className="form-floating mb-3">
             <select
               name="verificado"
               id="selectVerificado"
@@ -87,10 +88,10 @@ function EditarUsuario({ usuarioLogeado }) {
   function editarUsuario() {}
 
   return (
-    <main className="form-signin w-100 m-auto">
-      <h1 className="h3 mb-3 fw-normal">Editar usuario</h1>
+    <main className="form-signin w-25 m-auto">
+      <h1 className="h3 mb-3 fw-normal text-center">Editar usuario</h1>
       <form onSubmit={handleSubmit}>
-        <div className="form-floating">
+        <div className="form-floating mb-3">
           <input
             className="form-control"
             id="inputNombre"
@@ -100,7 +101,7 @@ function EditarUsuario({ usuarioLogeado }) {
           />
           <label htmlFor="inputNombre">Nombre</label>
         </div>
-        <div className="form-floating">
+        <div className="form-floating mb-3">
           <input
             className="form-control"
             id="inputApellido"
@@ -110,7 +111,7 @@ function EditarUsuario({ usuarioLogeado }) {
           />
           <label htmlFor="inputApellido">Apellido</label>
         </div>
-        <div className="form-floating">
+        <div className="form-floating mb-3">
           <input
             className="form-control"
             id="inputEmail"
@@ -120,7 +121,7 @@ function EditarUsuario({ usuarioLogeado }) {
           />
           <label htmlFor="inputEmail">Email</label>
         </div>
-        <div className="form-floating">
+        <div className="form-floating mb-3">
           <input
             className="form-control"
             id="inputDni"

@@ -9,6 +9,7 @@ import VerUsuario from "./paginas/usuario/VerUsuario";
 import EditarUsuario from "./paginas/usuario/EditarUsuario";
 import Navbar from "./componentes/Navbar";
 import IniciarSesion from "./paginas/usuario/IniciarSesion";
+import ResponderFormulario from "./paginas/formulario/responder-formulario";
 import { useAuth } from "./UseAuth";
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
           element={<EditarUsuario usuarioLogeado={usuarioLogeado} />}
         />
         <Route path="*" element={<Navigate to="/" />} />
+
+        <Route
+          path="/formularios/:idFormulario"
+          element={<ResponderFormulario />}
+        />
       </Routes>
       {/* <Login /> */}
     </>
