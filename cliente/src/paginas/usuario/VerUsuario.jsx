@@ -47,7 +47,9 @@ function VerUsuario() {
             DNI: <b>{usuario.dni ? usuario.dni : "Falta completar DNI"}</b>
           </h3>
 
-          <button className="btn btn-info me-3  ">Ver expedientes</button>
+          <Link to={`/expedientes/${id}`}>
+            <button className="btn btn-info me-3  ">Ver expedientes</button>
+          </Link>
           <Link to={`/editar-usuario/${id}`}>
             <button className="btn btn-warning">Editar usuario</button>
           </Link>

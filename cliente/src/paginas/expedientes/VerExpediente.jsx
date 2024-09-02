@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 function VerExpediente() {
   const [expediente, setExpediente] = useState({});
@@ -18,6 +20,58 @@ function VerExpediente() {
   useEffect(() => {
     fetchExpediente();
   }, []);
+
+  const exportarPDF = async (index) => {
+    let formulario = expediente.formularios[index];
+    let respuestasHtml = "";
+    for (let i = 0; i < formulario.respuestas.length; i++) {
+      if (formulario.respuestas[i].etiqueta !== "Terminos y Condiciones") {
+        respuestasHtml += `<p style="text-align: justify; font-size: 16px; font-family: Arial, sans-serif;">
+        ${formulario.respuestas[i].etiqueta}: <b>${formulario.respuestas[i].valor}</b>
+      </p>`;
+      }
+    }
+
+    // Renderiza el contenido dentro del componente
+    const divPdf = document.createElement("div");
+    divPdf.id = "div-pdf";
+    divPdf.style.margin = "0 auto";
+    divPdf.style.marginTop = "100%";
+    divPdf.style.textAlign = "justify";
+    divPdf.style.fontFamily = "Arial, sans-serif";
+    divPdf.style.width = "720px";
+    divPdf.innerHTML = `
+      <h1 style="text-align: center;
+  background-color: #22376c;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  font-size: 28px;
+  padding: 5px;">${formulario.idFormulario.nombreFormulario}</h1>
+      ${respuestasHtml}
+      <p style="text-align: right;">Firma: _______________ </p>
+    `;
+
+    // Agrega el div al DOM (por ejemplo, al body)
+    document.body.appendChild(divPdf);
+
+    // Captura la imagen con html2canvas
+    html2canvas(document.querySelector("#div-pdf")).then((canvas) => {
+      // Convierte la imagen capturada en base64
+      const imgData = canvas.toDataURL("image/png");
+
+      // Crea un nuevo documento PDF
+      const pdf = new jsPDF({ format: "a4" });
+      pdf.addImage(imgData, "PNG", 10, 10);
+
+      // Descarga el PDF
+      pdf.save(
+        `${formulario.idFormulario.nombreFormulario} ${expediente.usuario.nombre} ${expediente.usuario.apellido}.pdf`
+      );
+
+      // Limpia el div agregado al DOM
+      document.body.removeChild(divPdf);
+    });
+  };
 
   const mostrarFormularios = () => {
     let filas;
@@ -48,7 +102,12 @@ function VerExpediente() {
                 ></i>{" "}
                 Editar Formulario
               </Link>
-              <button className="btn btn-danger ms-3 me-3">
+              <button
+                className="btn btn-danger ms-3 me-3"
+                onClick={() => {
+                  exportarPDF(index);
+                }}
+              >
                 <i
                   className="fa-solid fa-file-pdf"
                   style={{ fontSize: "1.3rem" }}
