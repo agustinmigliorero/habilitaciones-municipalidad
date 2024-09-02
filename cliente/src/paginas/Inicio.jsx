@@ -24,8 +24,8 @@ function Inicio({ usuarioLogeado }) {
       )}
       <h1>Inicio</h1>
       {usuarioLogeado.logeado ? (
-        <Link to="/expedientes">
-          <button className="btn btn-primary">Ir a expedientes</button>
+        <Link to={`/expedientes/${usuarioLogeado.usuario._id}`}>
+          <button className="btn btn-primary">Ver mis expedientes</button>
         </Link>
       ) : (
         <>

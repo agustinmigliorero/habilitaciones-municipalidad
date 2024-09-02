@@ -40,7 +40,7 @@ function VerUsuarios({ usuarioLogeado }) {
 
   return (
     <>
-      <h1 className="h3 mb-3 fw-normal">{usuarioLogeado}</h1>
+      <h1 className="mb-3 text-center">Usuarios</h1>
       <div className="contenedor-tabla">
         <table>
           <thead>

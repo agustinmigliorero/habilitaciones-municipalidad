@@ -9,6 +9,14 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
           <li className="nav-item">
             <NavLink
               className="nav-link"
+              to={`/expedientes/${usuarioLogeado.usuario._id}`}
+            >
+              Mis Expedientes
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
               to={`/ver-usuario/${usuarioLogeado.usuario._id}`}
             >
               Hola! {usuarioLogeado.usuario.nombre}{" "}
@@ -40,6 +48,11 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
           <li className="nav-item">
             <NavLink className="nav-link" to={"/ver-usuarios"}>
               Usuarios
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to={`/vertodosexpedientes`}>
+              Expedientes
             </NavLink>
           </li>
         </>

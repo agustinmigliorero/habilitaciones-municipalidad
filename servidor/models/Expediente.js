@@ -1,25 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
-const respuestaCampoSchema = new Schema({
-  etiqueta: { type: String, required: true },
-  valor: Schema.Types.Mixed, // Puede ser cualquier tipo de dato
-});
-
-// Esquema para las respuestas del formulario
-const respuestaFormularioSchema = new Schema({
-  idFormulario: {
-    type: Schema.Types.ObjectId,
-    ref: "Formulario",
-    required: true,
-  },
-  respuestas: [respuestaCampoSchema],
-  fechaCreacion: { type: Date, default: Date.now }, // Marca de tiempo para la creación del expediente
-  fechaActualizacion: { type: Date, default: Date.now }, // Marca de tiempo para la última actualización
-});
-
 const expedienteSchema = new Schema({
-  formularios: [respuestaFormularioSchema],
+  formularios: [{ type: Schema.Types.ObjectId, ref: "RespuestaFormulario" }],
   estado: {
     type: String,
     default: "pendiente",

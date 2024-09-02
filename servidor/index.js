@@ -106,6 +106,9 @@ app.use("/api/expedientes", expedientesRouter);
 
 const formulariosRouter = require("./routes/formularios.js");
 app.use("/api/formularios", formulariosRouter);
+
+const respuestaFormulariosRouter = require("./routes/respuestaformularios.js");
+app.use("/api/respuestaformularios", respuestaFormulariosRouter);
 //Rutas
 
 app.get("/", (req, res) => {
