@@ -21,7 +21,7 @@ function EditarUsuario({ usuarioLogeado }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/api/usuarios/editar/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/usuarios/editar/${id}`, {
       credentials: "include",
       method: "PUT",
       headers: {
@@ -34,7 +34,9 @@ function EditarUsuario({ usuarioLogeado }) {
   };
 
   const fetchVerUsuario = async () => {
-    const respuesta = await fetch(`http://localhost:3000/api/usuarios/${id}`);
+    const respuesta = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/usuarios/${id}`
+    );
     const usuario = await respuesta.json();
     setUsuario(usuario);
   };

@@ -5,9 +5,12 @@ function VerTodosExpedientes() {
   const [expedientes, setExpedientes] = useState([]);
 
   const fetchExpedientes = async () => {
-    const respuesta = await fetch("http://localhost:3000/api/expedientes", {
-      credentials: "include",
-    });
+    const respuesta = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/expedientes`,
+      {
+        credentials: "include",
+      }
+    );
     const expedientes = await respuesta.json();
     setExpedientes(expedientes);
   };

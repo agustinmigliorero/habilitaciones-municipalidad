@@ -6,7 +6,9 @@ function VerUsuarios({ usuarioLogeado }) {
   const [usuarios, setUsuarios] = useState([]);
 
   const fetchVerUsuarios = async () => {
-    const respuesta = await fetch("http://localhost:3000/api/usuarios");
+    const respuesta = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/usuarios`
+    );
     const usuarios = await respuesta.json();
     setUsuarios(usuarios);
   };

@@ -10,7 +10,7 @@ function ResponderFormulario({ usuarioLogeado }) {
 
   const fetchFormulario = async () => {
     const respuesta = await fetch(
-      `http://localhost:3000/api/respuestaformularios/${idFormulario}`
+      `${import.meta.env.VITE_API_URL}/api/respuestaformularios/${idFormulario}`
     );
     const formulario = await respuesta.json();
     console.log(`LLEGA ESTO DEL FETCH: `, formulario);
@@ -62,16 +62,20 @@ function ResponderFormulario({ usuarioLogeado }) {
   }, []);
 
   const enviarFormulario = () => {
-    console.log(`Y ESTO?: `, nuevasRespuestas);
-    fetch(`http://localhost:3000/api/respuestaformularios/${formulario._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        respuestas: nuevasRespuestas,
-      }),
-    }).then((res) => navigate("/verexpediente/" + formulario.expediente));
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/respuestaformularios/${
+        formulario._id
+      }`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          respuestas: nuevasRespuestas,
+        }),
+      }
+    ).then((res) => navigate("/verexpediente/" + formulario.expediente));
   };
 
   const mostrarFormulario = () => {

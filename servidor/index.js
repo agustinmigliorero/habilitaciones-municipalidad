@@ -3,13 +3,11 @@ const app = express();
 const port = 3000;
 require("https").globalAgent.options.rejectUnauthorized = false;
 const path = require("path");
-const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
-const findOrCreate = require("mongoose-findorcreate");
 const Usuario = require("./models/Usuario.js");
 require("dotenv").config();
 
@@ -111,12 +109,11 @@ const respuestaFormulariosRouter = require("./routes/respuestaformularios.js");
 app.use("/api/respuestaformularios", respuestaFormulariosRouter);
 //Rutas
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use(express.static(path.join(__dirname, "public")));
+const htmlPath = path.join(__dirname, "public", "index.html");
 
-app.get("/chequearlogin", (req, res) => {
-  res.sendFile(path.join(__dirname, "chequearlogin.html"));
+app.get("*", (req, res) => {
+  res.sendFile(htmlPath);
 });
 
 app.listen(port, () => {

@@ -80,7 +80,7 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
   };
 
   const cerrarSesion = () => {
-    fetch("http://localhost:3000/api/usuarios/cerrar-sesion", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/usuarios/cerrar-sesion`, {
       credentials: "include",
     })
       .then((res) => res.json())

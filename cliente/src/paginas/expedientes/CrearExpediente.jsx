@@ -6,10 +6,13 @@ function CrearExpediente({ usuarioLogeado }) {
   const navigate = useNavigate();
 
   const fetchCrearExpediente = async () => {
-    const respuesta = await fetch("http://localhost:3000/api/expedientes", {
-      method: "POST",
-      credentials: "include",
-    });
+    const respuesta = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/expedientes`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
     const expediente = await respuesta.json();
     navigate(`/ver-expediente/${expediente.idExpediente}`);
   };

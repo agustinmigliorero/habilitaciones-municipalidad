@@ -9,7 +9,7 @@ function VerExpedientesUsuario({ usuarioLogeado }) {
 
   const fetchExpedientes = async () => {
     const respuestaFetch = await fetch(
-      `http://localhost:3000/api/expedientes/usuario/${idUsuario}`,
+      `${import.meta.env.VITE_API_URL}/api/expedientes/usuario/${idUsuario}`,
       { credentials: "include" }
     );
     const data = await respuestaFetch.json();

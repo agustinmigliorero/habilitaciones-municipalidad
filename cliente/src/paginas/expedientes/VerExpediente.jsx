@@ -10,7 +10,7 @@ function VerExpediente() {
 
   const fetchExpediente = async () => {
     const respuesta = await fetch(
-      `http://localhost:3000/api/expedientes/${idExpediente}`,
+      `${import.meta.env.VITE_API_URL}/api/expedientes/${idExpediente}`,
       { credentials: "include" }
     );
     const expediente = await respuesta.json();

@@ -7,7 +7,9 @@ function VerFormulario({ usuarioLogeado }) {
 
   const fetchFormulario = async () => {
     const respuesta = await fetch(
-      `http://localhost:3000/api/respuestaformularios/${idFormulario}`,
+      `${
+        import.meta.env.VITE_API_URL
+      }/api/respuestaformularios/${idFormulario}`,
       { credentials: "include" }
     );
     const formulario = await respuesta.json();

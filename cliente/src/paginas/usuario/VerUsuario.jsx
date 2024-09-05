@@ -6,7 +6,9 @@ function VerUsuario() {
   const { id } = useParams();
 
   const fetchVerUsuario = async () => {
-    const respuesta = await fetch(`http://localhost:3000/api/usuarios/${id}`);
+    const respuesta = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/usuarios/${id}`
+    );
     const usuario = await respuesta.json();
     setUsuario(usuario);
   };
