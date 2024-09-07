@@ -1,6 +1,8 @@
 node_modules
 servidor/node_modules
 servidor/*.env
+servidor/*.env.production
+servidor/*.env.development
 cliente/node_modules
 cliente/logs
 cliente/*.log

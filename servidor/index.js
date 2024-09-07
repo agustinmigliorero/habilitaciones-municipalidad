@@ -9,15 +9,21 @@ const session = require("express-session");
 const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const Usuario = require("./models/Usuario.js");
-require("dotenv").config();
+require("dotenv").config({
+  path:
+    process.env.NODE_ENV === "production"
+      ? ".env.production"
+      : ".env.development",
+});
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/prueba-municipalidad", {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+mongoose.connect("mongodb://127.0.0.1:27017/prueba-municipalidad");
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  console.log("Conectado a la base de datos");
+});
 
 //cors
 app.use((req, res, next) => {
@@ -31,6 +37,8 @@ app.use((req, res, next) => {
   next();
 });
 //cors
+
+console.log(`URL: ${process.env.CLIENT_URL}`);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

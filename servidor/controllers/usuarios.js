@@ -18,7 +18,7 @@ const autenticarUsuario = async (req, res) => {
       console.log(err);
     }
 
-    res.redirect("http://localhost:5173/");
+    res.redirect("http://localhost:3000/");
   });
 };
 
