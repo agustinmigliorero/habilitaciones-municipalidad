@@ -1,0 +1,41 @@
+{
+    "nombreFormulario": "F4: Solicitud de asesoramiento contra incendios",
+    "campos": [
+        {
+            "tipo": "text",
+            "etiqueta": "Nombre y apellido",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "DNI",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Ciudad de residencia",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Domicilio del comercio",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Rubro",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "checkbox",
+            "etiqueta": "Terminos y Condiciones",
+            "requerido": true,
+            "valor": false
+        }
+    ]
+}

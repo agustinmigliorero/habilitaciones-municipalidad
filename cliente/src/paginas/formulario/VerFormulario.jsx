@@ -24,6 +24,13 @@ function VerFormulario({ usuarioLogeado }) {
   const mostrarRespuestas = () => {
     if (formulario.respuestas !== undefined) {
       let componentes = formulario.respuestas.map((respuesta, index) => {
+        if (respuesta.etiqueta === "Terminos y Condiciones") {
+          return (
+            <h3>
+              {respuesta.etiqueta}: {respuesta.valor ? "Aceptado" : "Rechazado"}
+            </h3>
+          );
+        }
         return (
           <h3 key={index}>
             {respuesta.etiqueta}: {respuesta.valor}

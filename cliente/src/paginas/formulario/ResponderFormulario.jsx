@@ -30,6 +30,13 @@ function ResponderFormulario({ usuarioLogeado }) {
     setNuevasRespuestas(respuestas);
   }
 
+  const handleChangeCheckbox = (e, index) => {
+    const { name, checked } = e.target;
+    const respuestas = [...nuevasRespuestas];
+    respuestas[index].valor = checked;
+    setNuevasRespuestas(respuestas);
+  };
+
   const valoresAutocompletados = (campo) => {
     if (
       campo.etiqueta === "Nombre y apellido" &&
@@ -116,6 +123,22 @@ function ResponderFormulario({ usuarioLogeado }) {
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
+                <label htmlFor="floatingInput">{campo.etiqueta}</label>
+              </div>
+            );
+          } else if (campo.tipo === "checkbox") {
+            return (
+              <div className="form-check mt-3" key={index}>
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="floatingInput"
+                  placeholder={campo.etiqueta}
+                  name={campo.etiqueta}
+                  required={campo.requerido}
+                  checked={nuevasRespuestas[index].valor}
+                  onChange={(e) => handleChangeCheckbox(e, index)}
+                />
                 <label htmlFor="floatingInput">{campo.etiqueta}</label>
               </div>
             );
