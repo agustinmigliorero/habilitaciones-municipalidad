@@ -92,37 +92,26 @@ function ResponderFormulario({ usuarioLogeado }) {
       <>
         <h1>{estructuraFormulario.nombreFormulario}</h1>
         {estructuraFormulario.campos.map((campo, index) => {
-          if (campo.tipo === "text") {
+          if (
+            campo.tipo === "text" ||
+            campo.tipo === "email" ||
+            campo.tipo === "number"
+          ) {
             return (
               <div className="form-floating mt-3" key={index}>
                 <input
-                  type="text"
+                  type={campo.tipo}
                   className="form-control"
                   id="floatingInput"
                   placeholder={campo.etiqueta}
                   name={campo.etiqueta}
-                  required={campo.requerido}
+                  {...(campo.requerido ? "required" : {})}
                   value={
                     nuevasRespuestas[index].valor ||
                     valoresAutocompletados(campo)
                   }
                   onChange={(e) => handleChange(e, index)}
                 />
-                <label htmlFor="floatingInput">{campo.etiqueta}</label>
-              </div>
-            );
-          } else if (campo.tipo === "select") {
-            return (
-              <div className="form-floating mt-3">
-                <select
-                  className="form-select"
-                  aria-label="Default select example"
-                >
-                  <option selected>{campo.etiqueta}</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
                 <label htmlFor="floatingInput">{campo.etiqueta}</label>
               </div>
             );
@@ -135,11 +124,31 @@ function ResponderFormulario({ usuarioLogeado }) {
                   id="floatingInput"
                   placeholder={campo.etiqueta}
                   name={campo.etiqueta}
-                  required={campo.requerido}
+                  required
                   checked={nuevasRespuestas[index].valor}
                   onChange={(e) => handleChangeCheckbox(e, index)}
                 />
                 <label htmlFor="floatingInput">{campo.etiqueta}</label>
+              </div>
+            );
+          } else if (campo.tipo === "select") {
+            return (
+              <div className="form-floating mt-3">
+                <select
+                  name={campo.etiqueta}
+                  value={nuevasRespuestas[index].valor || ""}
+                  onChange={(e) => handleChange(e, index)}
+                  className="form-select"
+                  aria-label="Default select example"
+                  id="floatingSelect"
+                >
+                  {campo.opciones.map((opcion, index) => (
+                    <option key={index} value={opcion}>
+                      {opcion}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="floatingSelect">{campo.etiqueta}</label>
               </div>
             );
           }

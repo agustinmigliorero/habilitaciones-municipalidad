@@ -1,0 +1,48 @@
+{
+  "nombreFormulario": "FORMULARIO PRUEBA",
+  "campos": [
+    {
+      "tipo": "text",
+      "etiqueta": "Nombre y apellido",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "DNI",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Ciudad de residencia",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Domicilio del comercio",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Rubro",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "select",
+      "etiqueta": "Tipo de asesoramiento",
+      "requerido": true,
+      "opciones": ["Prevención", "Investigación", "Capacitación"],
+      "valor": ""
+    },
+    {
+      "tipo": "checkbox",
+      "etiqueta": "Terminos y Condiciones",
+      "requerido": true,
+      "valor": false
+    }
+  ]
+}

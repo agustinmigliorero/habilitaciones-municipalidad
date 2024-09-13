@@ -14,7 +14,7 @@ function CrearExpediente({ usuarioLogeado }) {
       }
     );
     const expediente = await respuesta.json();
-    navigate(`/ver-expediente/${expediente.idExpediente}`);
+    navigate(`/verexpediente/${expediente.idExpediente}`);
   };
 
   return (

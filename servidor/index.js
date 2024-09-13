@@ -124,6 +124,13 @@ app.get("*", (req, res) => {
   res.sendFile(htmlPath);
 });
 
+//Manejo de errores
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({ error: err.message });
+});
+//Manejo de errores
+
 app.listen(port, () => {
   console.log(`Servidor iniciado en el puerto ${port}`);
   console.log(`http://localhost:${port}`);
