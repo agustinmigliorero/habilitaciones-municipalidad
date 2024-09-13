@@ -32,6 +32,32 @@ import PreguntasFrecuentes from "./paginas/PreguntasFrecuentes";
 import { useAuth } from "./UseAuth";
 /*PAGINAS*/
 
+function RutaProtegidaLogeado({ children }) {
+  const { usuarioLogeado, cargando } = useAuth();
+  console.log(usuarioLogeado, cargando);
+  if (cargando) {
+    return "";
+  }
+  return usuarioLogeado.logeado ? (
+    children
+  ) : (
+    <Navigate to="/iniciar-sesion" state={{ alerta: "No estas logeado!" }} />
+  );
+}
+
+function RutaProtegidaAdministrativo({ children }) {
+  const { usuarioLogeado, cargando } = useAuth();
+  if (cargando) {
+    return "";
+  }
+  return usuarioLogeado.logeado &&
+    usuarioLogeado.usuario.rol === "administrador" ? (
+    children
+  ) : (
+    <Navigate to="/" state={{ alerta: "No eres administrador!" }} />
+  );
+}
+
 function App() {
   const { usuarioLogeado, setUsuarioLogeado } = useAuth();
 
