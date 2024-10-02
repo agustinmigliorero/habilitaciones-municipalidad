@@ -39,7 +39,7 @@ function VerExpediente() {
     divPdf.style.marginTop = "100%";
     divPdf.style.textAlign = "justify";
     divPdf.style.fontFamily = "Arial, sans-serif";
-    divPdf.style.width = "720px";
+    divPdf.style.width = "37%";
     divPdf.innerHTML = `
       <h1 style="text-align: center;
   background-color: #22376c;

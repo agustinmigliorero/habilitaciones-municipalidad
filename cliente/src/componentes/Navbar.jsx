@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
+import LogoMunicipalidad from "../assets/logo-municipio.png";
 
 function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
   const linksConectado = () => {
@@ -9,18 +10,18 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
           <li className="nav-item">
             <NavLink
               className="nav-link"
-              to={`/expedientes/${usuarioLogeado.usuario._id}`}
+              to={`/ver-usuario/${usuarioLogeado.usuario._id}`}
             >
-              Mis Expedientes
+              Hola! {usuarioLogeado.usuario.nombre}{" "}
+              {usuarioLogeado.usuario.apellido}
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink
               className="nav-link"
-              to={`/ver-usuario/${usuarioLogeado.usuario._id}`}
+              to={`/expedientes/${usuarioLogeado.usuario._id}`}
             >
-              Hola! {usuarioLogeado.usuario.nombre}{" "}
-              {usuarioLogeado.usuario.apellido}
+              Mis Expedientes
             </NavLink>
           </li>
           <li className="nav-item">
@@ -92,9 +93,17 @@ function Navbar({ usuarioLogeado, setUsuarioLogeado }) {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          {/* <a className="navbar-brand" href="#">
             Municipalidad de Azul
-          </a>
+          </a> */}
+
+          <Link className="navbar-brand" to={"/"}>
+            <img
+              src={LogoMunicipalidad}
+              style={{ maxWidth: "180px", maxHeight: "48px" }}
+              alt="Logo"
+            />
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

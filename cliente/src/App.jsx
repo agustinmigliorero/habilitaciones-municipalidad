@@ -41,7 +41,15 @@ function RutaProtegidaLogeado({ children }) {
   return usuarioLogeado.logeado ? (
     children
   ) : (
-    <Navigate to="/iniciar-sesion" state={{ alerta: "No estas logeado!" }} />
+    <Navigate
+      to="/iniciar-sesion"
+      state={{
+        alerta: {
+          mensaje: "Debes iniciar sesion para continuar",
+          estilo: "danger",
+        },
+      }}
+    />
   );
 }
 
@@ -54,7 +62,10 @@ function RutaProtegidaAdministrativo({ children }) {
     usuarioLogeado.usuario.rol === "administrador" ? (
     children
   ) : (
-    <Navigate to="/" state={{ alerta: "No eres administrador!" }} />
+    <Navigate
+      to="/"
+      state={{ alerta: { mensaje: "No eres administrador", estilo: "danger" } }}
+    />
   );
 }
 

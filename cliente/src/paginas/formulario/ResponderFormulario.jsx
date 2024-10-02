@@ -68,7 +68,8 @@ function ResponderFormulario({ usuarioLogeado }) {
     fetchFormulario();
   }, []);
 
-  const enviarFormulario = () => {
+  const enviarFormulario = (e) => {
+    e.preventDefault();
     fetch(
       `${import.meta.env.VITE_API_URL}/api/respuestaformularios/${
         formulario._id
@@ -105,7 +106,7 @@ function ResponderFormulario({ usuarioLogeado }) {
                   id="floatingInput"
                   placeholder={campo.etiqueta}
                   name={campo.etiqueta}
-                  {...(campo.requerido ? "required" : {})}
+                  required={campo.requerido}
                   value={
                     nuevasRespuestas[index].valor ||
                     valoresAutocompletados(campo)
@@ -158,15 +159,12 @@ function ResponderFormulario({ usuarioLogeado }) {
   };
 
   return (
-    <div className="form-signin w-25 m-auto">
+    <form className="form-signin w-25 m-auto" onSubmit={enviarFormulario}>
       {formulario.idFormulario !== undefined ? mostrarFormulario() : ""}
-      <button
-        className="w-100 btn btn-lg btn-primary mt-3"
-        onClick={enviarFormulario}
-      >
+      <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">
         Enviar
       </button>
-    </div>
+    </form>
   );
 }
 

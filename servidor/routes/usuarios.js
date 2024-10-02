@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const Usuario = require("../models/Usuario");
+const Usuario = require("../models/Usuario.js");
 const { catchAsync } = require("../utils.js");
 
 const {
