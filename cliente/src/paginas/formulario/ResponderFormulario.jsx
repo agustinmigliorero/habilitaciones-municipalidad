@@ -15,7 +15,17 @@ function ResponderFormulario({ usuarioLogeado }) {
     const formulario = await respuesta.json();
     console.log(`LLEGA ESTO DEL FETCH: `, formulario);
     setFormulario(formulario);
-    let respuestas = formulario.respuestas.map((respuesta) => {
+
+    let respuestas = formulario.respuestas.map((respuesta, index) => {
+      for (let i = 0; i < formulario.idFormulario.campos.length; i++) {
+        if (
+          respuesta.etiqueta === formulario.idFormulario.campos[i].etiqueta &&
+          formulario.idFormulario.campos[i].tipo === "select" &&
+          respuesta.valor === ""
+        ) {
+          respuesta.valor = formulario.idFormulario.campos[i].opciones[0];
+        }
+      }
       return respuesta;
     });
     console.log(`RESPUESTAS: `, respuestas);
@@ -137,7 +147,7 @@ function ResponderFormulario({ usuarioLogeado }) {
               <div className="form-floating mt-3">
                 <select
                   name={campo.etiqueta}
-                  value={nuevasRespuestas[index].valor || ""}
+                  value={nuevasRespuestas[index].valor}
                   onChange={(e) => handleChange(e, index)}
                   className="form-select"
                   aria-label="Default select example"
