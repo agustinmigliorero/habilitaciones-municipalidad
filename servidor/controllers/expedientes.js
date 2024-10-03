@@ -54,6 +54,11 @@ const crearExpediente = async (req, res) => {
       expediente.formularios.push(nuevaRespuestaFormulario);
     }
     await expediente.save();
+
+    const usuario = await Usuario.findById(req.user._id);
+    usuario.expedientes.push(expediente._id);
+    await usuario.save();
+
     res.json({ expediente, mensaje: "Expediente creado" });
   }
 };

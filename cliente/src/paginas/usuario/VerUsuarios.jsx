@@ -20,6 +20,7 @@ function VerUsuarios({ usuarioLogeado }) {
   const mostrarTabla = () => {
     if (usuarios.length > 0) {
       return usuarios.map((usuario) => {
+        console.log(usuario);
         return (
           <tr key={usuario._id}>
             <td>{usuario._id}</td>

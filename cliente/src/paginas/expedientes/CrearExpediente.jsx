@@ -13,8 +13,8 @@ function CrearExpediente({ usuarioLogeado }) {
         credentials: "include",
       }
     );
-    const expediente = await respuesta.json();
-    navigate(`/verexpediente/${expediente.idExpediente}`);
+    const data = await respuesta.json();
+    navigate(`/verexpediente/${data.expediente._id}`);
   };
 
   return (

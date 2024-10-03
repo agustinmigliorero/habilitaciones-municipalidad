@@ -141,7 +141,7 @@
       "valor": ""
     },
     {
-      "tipo": "text",
+      "tipo": "email",
       "etiqueta": "Email",
       "requerido": true,
       "valor": ""
